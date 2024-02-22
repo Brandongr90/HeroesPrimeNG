@@ -29,9 +29,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::prefix('productos')->group(function () {
-    Route::post('/all', [ProductoController::class, 'getProductos']);
-    Route::get('/{producto_id}', [ProductoController::class, 'getProductoById'])->where('producto_id', '[0-9]+');
-    Route::post('', [ProductoController::class, 'insertProducto']);
-    Route::put('/{producto_id}', [ProductoController::class, 'updateProducto'])->where('producto_id', '[0-9]+');
-    Route::delete('/{producto_id}', [ProductoController::class, 'deleteProducto'])->where('producto_id', '[0-9]+');
+    Route::post('/getAll', [ProductoController::class, 'getProductos']);
+    Route::get('getOne/{producto_id}', [ProductoController::class, 'getProductoById'])->where('producto_id', '[0-9]+');
+    Route::post('/insert', [ProductoController::class, 'insertProducto']);
+    Route::put('/update/{producto_id}', [ProductoController::class, 'updateProducto'])->where('producto_id', '[0-9]+');
+    Route::delete('/delete/{producto_id}', [ProductoController::class, 'deleteProducto'])->where('producto_id', '[0-9]+');
 });

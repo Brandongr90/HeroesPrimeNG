@@ -54,7 +54,7 @@ class ProductoController extends Controller
             'created_at' => $producto->created_at
         ] : [];
 
-        return response()->json($array);
+        return response()->json(['data' => $array]);
     }
 
     public function insertProducto(Request $request)
@@ -89,7 +89,7 @@ class ProductoController extends Controller
             return response()->json(['estatus' => false]);
         }
 
-        $producto->update(['eliminado' => 0]);
+        $producto->delete();
 
         return response()->json(['estatus' => true]);
     }
