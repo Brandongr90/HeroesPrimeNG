@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\PermisoController;
+use App\Http\Controllers\Api\PermisosController;
 use App\Http\Controllers\Api\PermisoUsuarioController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProductoController;
@@ -34,9 +34,9 @@ Route::prefix('productos')->group(function () {
 });
 
 Route::prefix('permisos')->group(function () {
-    Route::post('/getAll', [PermisoController::class, 'getPermisos']);
-    Route::get('/getOne/{idPermiso}', [PermisoController::class, 'getPermisoById'])->where('idPermiso', '[0-9]+');
-    Route::post('/insert', [PermisoController::class, 'insertPermiso']);
-    Route::put('/update/{idPermiso}', [PermisoController::class, 'updatePermiso'])->where('idPermiso', '[0-9]+');
-    Route::delete('/delete/{idPermiso}', [PermisoController::class, 'deletePermiso'])->where('idPermiso', '[0-9]');
+    Route::post('/getAll', [PermisosController::class, 'getPermisos']);
+    Route::get('/getOne/{idPermiso}', [PermisosController::class, 'getPermisoById'])->where('idPermiso', '[0-9]+');
+    Route::post('/insert', [PermisosController::class, 'insertPermiso']);
+    Route::put('/update/{idPermiso}', [PermisosController::class, 'updatePermiso'])->where('idPermiso', '[0-9]+');
+    Route::delete('/delete/{idPermiso}', [PermisosController::class, 'deletePermiso'])->where('idPermiso', '[0-9]+');
 });

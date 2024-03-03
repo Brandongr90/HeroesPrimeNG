@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Permiso;
+use App\Models\Permisos;
+use Illuminate\Http\Request;
 
-class PermisoController extends Controller
+class PermisosController extends Controller
 {
 
     public function getPermisos(Request $request)
@@ -26,27 +26,26 @@ class PermisoController extends Controller
                     $query->where('permiso', 'like', $filtro);
                 };
             }
-            $permisos = Permiso::where($condicion)
+            $permisos = Permisos::where($condicion)
                 ->orderBy($sortField, $sort)
                 ->offset($valores['first'])
                 ->limit($valores['rows'])
                 ->get()
                 ->toArray();
 
-            $total = Permiso::where($condicion)->count();
+            $total = Permisos::where($condicion)->count();
         }
         return response()->json(['data' => $permisos, 'count' => $total, 'parametros' => $valores]);
     }
-
     public function getPermisoById($permisoId)
     {
-        $permiso = Permiso::find($permisoId);
+        $permiso = Permisos::find($permisoId);
 
         $array = $permiso ? [
             'id' => (int)$permiso->id,
             'nombre' => $permiso->nombre,
-            'clave' => $permiso->url,
-            'acccion' => $permiso->categoria,
+            'clave' => $permiso->clave,
+            'accion' => $permiso->accion,
         ] : [];
 
         return response()->json(['data' => $array]);
@@ -56,7 +55,7 @@ class PermisoController extends Controller
     {
         $data = $request->only(['nombre', 'clave', 'accion']);
 
-        $permiso = Permiso::create($data);
+        $permiso = Permisos::create($data);
 
         return response()->json(['estatus' => true, 'id' => $permiso->id]);
     }
@@ -65,7 +64,7 @@ class PermisoController extends Controller
     { 
         $data = $request->only(['nombre', 'clave', 'accion']);
 
-        $permiso = Permiso::find($permiso_id);
+        $permiso = Permisos::find($permiso_id);
 
         if (!$permiso) {
             return response()->json(['estatus' => false]);
@@ -76,17 +75,16 @@ class PermisoController extends Controller
         return response()->json(['estatus' => true]);
     }
 
-    public function deletePermiso($permiso_id)
+    public function deletePermiso($producto_id)
     {
-        $permiso = Permiso::find($permiso_id);
+        $producto = Permisos::find($producto_id);
 
-        if (!$permiso) {
+        if (!$producto) {
             return response()->json(['estatus' => false]);
         }
 
-        $permiso->delete();
+        $producto->delete();
 
         return response()->json(['estatus' => true]);
     }
-    
 }
