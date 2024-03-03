@@ -16,10 +16,10 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
+        
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        // $user->type = 2;
         $user->password = Hash::make($request->password);
 
         $user->save();
@@ -69,7 +69,6 @@ class UserController extends Controller
                     'estatus' => 1,
                     'mensaje' => 'Usuario correcto',
                     'name' => $user->name,
-                    // 'type' => $user->type,
                     'access_token' => $token
                 ]);
             } else {
@@ -103,5 +102,19 @@ class UserController extends Controller
             'estatus' => 1,
             'mensaje' => 'Cierre de Sesión'
         ]);
+    }
+
+    public function getUsuarios(){
+
+        $permisos = User::select('name')->get();
+
+        $array = [];
+
+        foreach ($permisos as $permiso) {
+            array_push($array, $permiso->name);
+        };
+
+        return response()->json($array);
+
     }
 }
