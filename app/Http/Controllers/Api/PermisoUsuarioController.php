@@ -1,29 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PermisoUsuario;
+use Illuminate\Http\Request;
 
 class PermisoUsuarioController extends Controller
 {
-
     public function getPermisosUsuario($idUsuario){
 
-        $permisos = PermisoUsuario::table('usuariospermisos')
-        ->select('idUsuario')
-        ->where('idUdsuario','=', $idUsuario)
-        ->get();
+        $id = PermisoUsuario::find($idUsuario);
 
-        foreach ($permisos as $permiso) {
-            $array =[
-                'nombres' => $permiso->idUsuario
-            ];
-        };
-
-        return response()->json(['estatus' => true, 'data' => $array]);
+        if ($id) {
+            $permisos = PermisoUsuario::select('permisosusuarios.idUsuario', 'permisosusuarios.idPermiso', 'users.name as nombre', 'permisos.nombre as permiso')
+            ->join('permisos', 'permisos.id', '=', 'permisosusuarios.idPermiso')
+            ->join('users', 'users.id', '=', 'permisosusuarios.idUsuario')
+            ->where('users.id', '=', $idUsuario)
+            ->get();
+    
+            $array = [];
+    
+            foreach ($permisos as $permiso) {
+                $salida =[
+                    'idUsuario' => $permiso->idUsuario,
+                    'idPermiso' => $permiso->idPermiso,
+                    'nombre' => $permiso->nombre,
+                    'permiso' => $permiso->permiso,
+                ];
+    
+                array_push($array,$salida);
+            };
+    
+            return response()->json(['estatus' => true, 'data' => $array]);
+        }else{
+            return response()->json(['estatus' => false, 'msg' => 'Usuario no encontrado']);
+        }
 
     }
-    
 }

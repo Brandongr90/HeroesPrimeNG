@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [UserController::class, 'login']);
 Route::get('getUsuarios', [UserController::class, 'getUsuarios']);
-Route::get('getPermisosUsuarios', [PermisoUsuarioController::class, 'getUsuarios']);
+Route::get('getPermisosUsuarios/{idUsuario}', [PermisoUsuarioController::class, 'getPermisosUsuario'])->where('','[0-9]+');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::prefix('user')->group(function () {
