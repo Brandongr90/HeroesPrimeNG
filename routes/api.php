@@ -11,10 +11,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [UserController::class, 'login']);
-Route::get('getUsuarios', [UserController::class, 'getUsuarios']);
-Route::get('getPermisosUsuarios/{idUsuario}', [PermisoUsuarioController::class, 'getPermisosUsuario'])->where('','[0-9]+');
-
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::prefix('user')->group(function () {
         Route::post('/register', [UserController::class, 'register']);
@@ -40,3 +36,8 @@ Route::prefix('permisos')->group(function () {
     Route::put('/update/{idPermiso}', [PermisosController::class, 'updatePermiso'])->where('idPermiso', '[0-9]+');
     Route::delete('/delete/{idPermiso}', [PermisosController::class, 'deletePermiso'])->where('idPermiso', '[0-9]+');
 });
+
+Route::post('login', [UserController::class, 'login']);
+Route::get('getUsuarios', [UserController::class, 'getUsuarios']);
+Route::get('getPermiso/{idUsuario}', [PermisoUsuarioController::class, 'getPermisosUsuario'])->where('','[0-9]+');
+Route::get('getNoPermisos/{idUsuario}', [PermisoUsuarioController::class, 'getNoPermisosUsuario'])->where('','[0-9]+');

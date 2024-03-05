@@ -106,15 +106,20 @@ class UserController extends Controller
 
     public function getUsuarios(){
 
-        $permisos = User::select('name')->get();
+        $permisos = User::select('id','name')->get();
 
         $array = [];
 
         foreach ($permisos as $permiso) {
-            array_push($array, $permiso->name);
+
+            $datos = [
+                'id' => $permiso->id,
+                'nombre' => $permiso->name,
+            ];
+            array_push($array, $datos);
         };
 
-        return response()->json($array);
+        return response()->json( $array);
 
     }
 }
