@@ -41,3 +41,8 @@ Route::post('login', [UserController::class, 'login']);
 Route::get('getUsuarios', [UserController::class, 'getUsuarios']);
 Route::get('getPermiso/{idUsuario}', [PermisoUsuarioController::class, 'getPermisosUsuario'])->where('','[0-9]+');
 Route::get('getNoPermisos/{idUsuario}', [PermisoUsuarioController::class, 'getNoPermisosUsuario'])->where('','[0-9]+');
+Route::get('showDisponibles/{idUsuario}', [PermisoUsuarioController::class, 'showDisponibles'])->where('','[0-9]+');
+Route::get('showAsignados/{idUsuario}', [PermisoUsuarioController::class, 'showAsignados'])->where('','[0-9]+');
+Route::post('updateInsert', [PermisoUsuarioController::class, 'updateInsert']);
+Route::post('ActualizarPermisos', [PermisoUsuarioController::class, 'ActualizarPermisos']);
+Route::delete('DeletePermisos', [PermisoUsuarioController::class, 'ActualizarPermisos']);

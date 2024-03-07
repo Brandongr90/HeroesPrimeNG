@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9
+class ComposerStaticInit0d7ded2ca672aad7387267e4d04f501b
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -531,6 +531,7 @@ class ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Api\\PermisosController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/PermisosController.php',
         'App\\Http\\Controllers\\Api\\ProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ProductoController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -544,7 +545,8 @@ class ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Models\\Favoritos' => __DIR__ . '/../..' . '/app/Models/Favoritos.php',
+        'App\\Models\\PermisoUsuario' => __DIR__ . '/../..' . '/app/Models/PermisoUsuario.php',
+        'App\\Models\\Permisos' => __DIR__ . '/../..' . '/app/Models/Permisos.php',
         'App\\Models\\Producto' => __DIR__ . '/../..' . '/app/Models/Producto.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -6222,7 +6224,6 @@ class ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9
         'Symfony\\Component\\String\\Inflector\\FrenchInflector' => __DIR__ . '/..' . '/symfony/string/Inflector/FrenchInflector.php',
         'Symfony\\Component\\String\\Inflector\\InflectorInterface' => __DIR__ . '/..' . '/symfony/string/Inflector/InflectorInterface.php',
         'Symfony\\Component\\String\\LazyString' => __DIR__ . '/..' . '/symfony/string/LazyString.php',
-        'Symfony\\Component\\String\\Resources\\WcswidthDataGenerator' => __DIR__ . '/..' . '/symfony/string/Resources/WcswidthDataGenerator.php',
         'Symfony\\Component\\String\\Slugger\\AsciiSlugger' => __DIR__ . '/..' . '/symfony/string/Slugger/AsciiSlugger.php',
         'Symfony\\Component\\String\\Slugger\\SluggerInterface' => __DIR__ . '/..' . '/symfony/string/Slugger/SluggerInterface.php',
         'Symfony\\Component\\String\\UnicodeString' => __DIR__ . '/..' . '/symfony/string/UnicodeString.php',
@@ -6536,9 +6537,9 @@ class ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit069207f9613d4e9721cc42d63f4fa6e9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0d7ded2ca672aad7387267e4d04f501b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0d7ded2ca672aad7387267e4d04f501b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0d7ded2ca672aad7387267e4d04f501b::$classMap;
 
         }, null, ClassLoader::class);
     }
